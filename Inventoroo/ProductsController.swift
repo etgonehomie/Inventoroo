@@ -7,6 +7,39 @@
 
 import UIKit
 
+// TODO: FIX THIS SO THAT THERE is a SectionFactory to define all the cell varialbes for a given section
+protocol SectionAttributes {
+    var type: SectionType { get }
+    var numOfItemsInSection: Int { get }
+    var itemSize: CGSize { get }
+    var reuseIdentifier: String { get }
+}
+
+struct ChartSection: SectionAttributes {
+    
+    var type: SectionType { .chartSection }
+    
+    var numOfItemsInSection: Int { 1 }
+    
+    var itemSize: CGSize { CGSize(width: 100, height: 100) }
+    
+    var reuseIdentifier: String { ChartCell.reuseIdentifier }
+    
+    
+}
+
+struct ProductsSection: SectionAttributes {
+    var type: SectionType { .productsSection }
+    
+    var numOfItemsInSection: Int { 5 }
+    
+    var itemSize: CGSize { CGSize(width: 100, height: 100) }
+    
+    var reuseIdentifier: String { ProductCell.reuseIdentifier }
+    
+    
+}
+
 enum SectionType: Int {
     case chartSection
     case productsSection
