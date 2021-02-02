@@ -91,7 +91,9 @@ class HomePageViewController: UICollectionViewController, UICollectionViewDelega
     // TODO: - Need to refactor so that we dont have all these switch statements littered throughout all the functions
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
-        return collectionView.dequeueReusableCell(withReuseIdentifier: sectionAttributes.reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sectionAttributes.reuseIdentifier, for: indexPath)
+        cell.contentView.largeContentTitle = "Hello world"
+        return cell
     }
     
 //    override func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
@@ -99,20 +101,19 @@ class HomePageViewController: UICollectionViewController, UICollectionViewDelega
 //    }
     
     // TODO: - https://medium.com/@andrea.toso/uicollectionviewcell-dynamic-height-swift-b099b28ddd23
-    // might be able to use the above to properly rotate
+    // might be able to use the above to properly change cell size on rotate. The URL says to use the 2 funcs below
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        <#code#>
+        super.traitCollectionDidChange(previousTraitCollection)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        super(viewWillTransition(to: size, with: coordinator))
+        super.viewWillTransition(to: size, with: coordinator)
     }
     
     // MARK: - Delegate Flow Layout Methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
-        
+
         if UIDevice.current.orientation.isLandscape {
             print("Section: \(sectionAttributes.type) | lanscape: \(sectionAttributes.cellLayout.landscapeSize.width)")
         } else {
