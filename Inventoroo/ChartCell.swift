@@ -29,13 +29,14 @@ class ChartCell: UICollectionViewCell {
 }
 
 extension ChartCell: CellLayout {
-    var landscapeSize: CGSize {
-        CGSize(width: 200, height: 200)
-    }
-    
+    private var portraitSide: Int { 400 }
+    private var landscapeSide: Int { 100 }
+
     var portraitSize: CGSize {
-        landscapeSize
+        CGSize(width: portraitSide, height: portraitSide)
     }
     
-    
+    var landscapeSize: CGSize {
+        CGSize(width: landscapeSide, height: landscapeSide)
+    }
 }

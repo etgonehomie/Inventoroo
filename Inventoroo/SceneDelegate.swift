@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Create a controller and then create a window scene
         let layout = UICollectionViewFlowLayout()
-        let productsController = ProductsController(collectionViewLayout: layout)
-        window = BoilerplateUtilities.createMainNavigationWindowScene(for: scene, with: productsController)
+        let homePageViewController = HomePageViewController(collectionViewLayout: layout)
+        window = BoilerplateUtilities.createMainNavigationWindowScene(for: scene, with: homePageViewController)
         
         guard let _ = (scene as? UIWindowScene) else { return }
     }

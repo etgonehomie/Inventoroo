@@ -8,6 +8,11 @@
 import UIKit
 
 // TODO: FIX THIS SO THAT THERE is a SectionFactory to define all the cell varialbes for a given section
+
+class SectionAttributesFactory {
+    
+}
+
 protocol SectionAttributes {
     var type: SectionType { get }
     var numOfItemsInSection: Int { get }
@@ -46,7 +51,7 @@ enum SectionType: Int {
 }
 
 
-class ProductsController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomePageViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
    
     
@@ -64,7 +69,9 @@ class ProductsController: UICollectionViewController, UICollectionViewDelegateFl
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         switch SectionType(rawValue: section) {
+        
         case .chartSection:
             return 1
         default:

@@ -27,12 +27,13 @@ class ProductCell: UICollectionViewCell {
         
 }
 
+// MARK: - CellLayout Extension
 extension ProductCell: CellLayout {
-    var landscapeSize: CGSize {
-        CGSize(width: 100, height: 100)
-    }
     
     var portraitSize: CGSize {
-        landscapeSize
+        CGSize(width: 200, height: 200)
+    }
+    var landscapeSize: CGSize {
+        CGSize(width: 50, height: 50)
     }
 }

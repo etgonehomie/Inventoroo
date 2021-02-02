@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2934594725C7D3B100D43CFC /* ChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934594625C7D3B100D43CFC /* ChartCell.swift */; };
 		2934594C25C7D4A700D43CFC /* CellLayoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */; };
-		29CBD1DB25C527110021A66D /* ProductsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1DA25C527110021A66D /* ProductsController.swift */; };
+		29CBD1DB25C527110021A66D /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1DA25C527110021A66D /* HomePageViewController.swift */; };
 		29CBD1E625C529450021A66D /* BoilerplateUtilties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */; };
 		29CBD1EB25C534BA0021A66D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1EA25C534BA0021A66D /* ProductCell.swift */; };
 		29FE5C2525C13C7D00A43C5E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FE5C2425C13C7D00A43C5E /* AppDelegate.swift */; };
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		2934594625C7D3B100D43CFC /* ChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCell.swift; sourceTree = "<group>"; };
 		2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellLayoutProtocol.swift; sourceTree = "<group>"; };
-		29CBD1DA25C527110021A66D /* ProductsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsController.swift; sourceTree = "<group>"; };
+		29CBD1DA25C527110021A66D /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoilerplateUtilties.swift; sourceTree = "<group>"; };
 		29CBD1EA25C534BA0021A66D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		29FE5C2125C13C7D00A43C5E /* Inventoroo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inventoroo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +107,7 @@
 			children = (
 				29FE5C2425C13C7D00A43C5E /* AppDelegate.swift */,
 				29FE5C2625C13C7D00A43C5E /* SceneDelegate.swift */,
-				29CBD1DA25C527110021A66D /* ProductsController.swift */,
+				29CBD1DA25C527110021A66D /* HomePageViewController.swift */,
 				29CBD1EA25C534BA0021A66D /* ProductCell.swift */,
 				2934594625C7D3B100D43CFC /* ChartCell.swift */,
 				2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */,
@@ -272,7 +272,7 @@
 				2934594C25C7D4A700D43CFC /* CellLayoutProtocol.swift in Sources */,
 				29CBD1EB25C534BA0021A66D /* ProductCell.swift in Sources */,
 				29CBD1E625C529450021A66D /* BoilerplateUtilties.swift in Sources */,
-				29CBD1DB25C527110021A66D /* ProductsController.swift in Sources */,
+				29CBD1DB25C527110021A66D /* HomePageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
