@@ -20,4 +20,17 @@ class BoilerplateUtilities {
         window.makeKeyAndVisible()
         return window
     }
+    
+    static var shorterDeviceSide: CGFloat {
+        UIDevice.current.orientation.isPortrait ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
+    }
+    
+    static var longerDeviceSide: CGFloat {
+        UIDevice.current.orientation.isLandscape ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
+    }
+    
+    static func deviceAnchors(for view: UIView) -> (shorterAnchor: NSLayoutDimension, longerAnchor: NSLayoutDimension) {
+        UIDevice.current.orientation.isPortrait ? (view.widthAnchor, view.heightAnchor) : (view.heightAnchor, view.widthAnchor)
+    }
+    
 }

@@ -24,16 +24,17 @@ class ProductCell: UICollectionViewCell {
         largeContentTitle = "hello world"
         
     }
-        
 }
 
 // MARK: - CellLayout Extension
 extension ProductCell: CellLayout {
     
     var portraitSize: CGSize {
-        CGSize(width: 200, height: 200)
+        let side = BoilerplateUtilities.shorterDeviceSide * 0.7
+        return CGSize(width: side, height: side)
     }
+    
     var landscapeSize: CGSize {
-        CGSize(width: 50, height: 50)
+        portraitSize
     }
 }

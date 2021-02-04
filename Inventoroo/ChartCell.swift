@@ -21,45 +21,35 @@ class ChartCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+        
         let imageView = UIImageView()
         imageView.image = UIImage(named: "test")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleToFill
         addSubview(imageView)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = true
-        imageView.bounds = CGRect(
-            x: 0,
-            y: 0,
-            width: 207,
-            height: 100
-        )
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageView.center = CGPoint(
-            x: UIScreen.main.bounds.midX,
-            y: UIScreen.main.bounds.midY
-        )
-        imageView.autoresizingMask = [
-            .flexibleLeftMargin,
-            .flexibleRightMargin,
-            .flexibleTopMargin,
-            .flexibleBottomMargin
-        ]
-//        title.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[v0(40)]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": title]))
-//        title.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(40)]", options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: ["v0": title]))
-
+        let shorterAnchor = BoilerplateUtilities.deviceAnchors(for: contentView).shorterAnchor
+        
+        let padding = portraitSize.width * -0.25
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalTo: shorterAnchor, constant: padding),
+            imageView.heightAnchor.constraint(equalTo: shorterAnchor, constant: padding),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
         backgroundColor = UIColor.blue
     }
 }
 
 extension ChartCell: CellLayout {
-    private var portraitSide: Int { 400 }
-    private var landscapeSide: Int { 100 }
-
+    
     var portraitSize: CGSize {
-        CGSize(width: portraitSide, height: portraitSide)
+        let side = BoilerplateUtilities.shorterDeviceSide * 0.9
+        return CGSize(width: side, height: side)
     }
     
     var landscapeSize: CGSize {
-        CGSize(width: landscapeSide, height: landscapeSide)
+        portraitSize
     }
 }

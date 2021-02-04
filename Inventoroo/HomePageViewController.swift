@@ -51,7 +51,7 @@ struct ProductsSection: SectionAttributes {
     var sectionId: Int
     let type: SectionType = .productsSection
     let reuseIdentifier = ProductCell.reuseIdentifier
-    var numOfItemsInSection =  1
+    var numOfItemsInSection =  5
     
     // MARK: - Computed Properties
     var cellLayout: CellLayout { ProductCell() }
@@ -96,30 +96,16 @@ class HomePageViewController: UICollectionViewController, UICollectionViewDelega
         return cell
     }
     
-//    override func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
-//        <#code#>
-//    }
-    
-    // TODO: - https://medium.com/@andrea.toso/uicollectionviewcell-dynamic-height-swift-b099b28ddd23
-    // might be able to use the above to properly change cell size on rotate. The URL says to use the 2 funcs below
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-    }
-    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { context in
+            self.collectionView.collectionViewLayout.invalidateLayout()
+        })
     }
     
     // MARK: - Delegate Flow Layout Methods
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
-
-        if UIDevice.current.orientation.isLandscape {
-            print("Section: \(sectionAttributes.type) | lanscape: \(sectionAttributes.cellLayout.landscapeSize.width)")
-        } else {
-            print("Section: \(sectionAttributes.type) | portrait: \(sectionAttributes.cellLayout.portraitSize.width)")
-        }
-
         return UIDevice.current.orientation.isLandscape ? sectionAttributes.cellLayout.landscapeSize : sectionAttributes.cellLayout.portraitSize
     }
 
