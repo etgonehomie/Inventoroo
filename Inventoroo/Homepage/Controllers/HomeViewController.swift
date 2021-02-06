@@ -27,43 +27,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell?
-        switch indexPath.section {
-        case 0:
-            // create chart cell
-            let chartCell = tableView.dequeueReusableCell(withIdentifier: ChartTableCell.identifier, for: indexPath) as? ChartTableCell
-            cell = chartCell
-            
-        // this cell contains a collection view on the content view container
-        
-        default:
-            // create product cell
-            let productCell = tableView.dequeueReusableCell(withIdentifier: MainTableCell.identifier, for: indexPath) as? MainTableCell
-            cell = productCell
-            
-            // this cell contains a collection view on the content view container
-        }
-        
-        guard let _cell = cell else { return UITableViewCell() }
-                
-        let contentView = _cell.contentView
-        var content = _cell.defaultContentConfiguration()
-        
-            content.text = """
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
-                """
-        
-        _cell.contentConfiguration = content
-        return _cell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmbeddedCollectionViewCell.identifier, for: indexPath) as? EmbeddedCollectionViewCell else { return UITableViewCell() }
+        let contentView = cell.contentView
+        var content = cell.defaultContentConfiguration()
+
+        cell.dummyConfigure(for: indexPath.section)
+        content.text = cell.title
+        cell.contentConfiguration = content
+        return cell
+    }
+    
+    // TODO: Not automatically adjusting height to the collection view within
+    // look at: https://mobikul.com/manage-collection-view-height-inside-the-table-view-cell-using-swift-4/
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
     
     // MARK: - Private functions
@@ -71,7 +48,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 500
         tableView.register(MainTableCell.self, forCellReuseIdentifier: MainTableCell.identifier)
-        tableView.register(MainTableCell2.self, forCellReuseIdentifier: MainTableCell2.identifier)
+        tableView.register(EmbeddedCollectionViewCell.self, forCellReuseIdentifier: EmbeddedCollectionViewCell.identifier)
         tableView.register(ChartTableCell.self, forCellReuseIdentifier: ChartTableCell.identifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false

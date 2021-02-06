@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import Foundation
 
-class EmbeddedCollectionCell: UITableViewCell {
-    static let identifier: String = "embeddedCollectionCellId"
+class EmbeddedCollectionViewCell: UITableViewCell {
+    static let identifier: String = "embeddedCollectionViewCellId"
     var title: String?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupViews()
+        setupViews()
     }
     
     required init?(coder: NSCoder) {
@@ -25,6 +26,26 @@ class EmbeddedCollectionCell: UITableViewCell {
         // Sets the collection view to be within the table views contentView
     }
     
+    func dummyConfigure(for number: Int) {
+        backgroundColor = number == 0 ? UIColor.blue : UIColor.yellow
+        title = number == 0 ? "First Section" : "All Other Sections"
+    }
+    
+    private func setupViews() {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "test")
+        imageView.contentMode = .scaleToFill
+        addSubview(imageView)
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+    
+        NSLayoutConstraint.activate([
+            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
+    }
 }
 class ChartTableCell: UITableViewCell {
     static let identifier: String = "chartCellId"
