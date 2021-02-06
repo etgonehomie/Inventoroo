@@ -17,10 +17,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         // Create a controller and then create a window scene
-        let layout = UICollectionViewFlowLayout()
-        let homePageViewController = HomePageViewController(collectionViewLayout: layout)
-        window = BoilerplateUtilities.createMainNavigationWindowScene(for: scene, with: homePageViewController)
+//        let layout = UICollectionViewFlowLayout()
+//        let homePageViewController = HomePageViewController(collectionViewLayout: layout)
+//        window = BoilerplateUtilities.createMainNavigationWindowScene(for: scene, with: homePageViewController)
         
+        let homeViewController = HomeViewController()
+        window = BoilerplateUtilities.createMainNavigationWindowScene(for: scene, with: homeViewController)
         guard let _ = (scene as? UIWindowScene) else { return }
     }
 
