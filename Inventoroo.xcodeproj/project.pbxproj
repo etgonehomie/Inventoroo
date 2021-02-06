@@ -13,7 +13,6 @@
 		29769E2F25CD19570072A822 /* MainTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E2E25CD19570072A822 /* MainTableView.swift */; };
 		29769E3425CD1FCA0072A822 /* MainTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E3325CD1FCA0072A822 /* MainTableCell.swift */; };
 		29769E3C25CD28CB0072A822 /* SampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E3B25CD28CB0072A822 /* SampleCell.swift */; };
-		29769E4125CE305A0072A822 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E4025CE305A0072A822 /* StackViewController.swift */; };
 		29CBD1DB25C527110021A66D /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1DA25C527110021A66D /* HomePageViewController.swift */; };
 		29CBD1E625C529450021A66D /* BoilerplateUtilties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */; };
 		29CBD1EB25C534BA0021A66D /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1EA25C534BA0021A66D /* ProductCell.swift */; };
@@ -49,7 +48,6 @@
 		29769E2E25CD19570072A822 /* MainTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableView.swift; sourceTree = "<group>"; };
 		29769E3325CD1FCA0072A822 /* MainTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableCell.swift; sourceTree = "<group>"; };
 		29769E3B25CD28CB0072A822 /* SampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCell.swift; sourceTree = "<group>"; };
-		29769E4025CE305A0072A822 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		29CBD1DA25C527110021A66D /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
 		29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoilerplateUtilties.swift; sourceTree = "<group>"; };
 		29CBD1EA25C534BA0021A66D /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
@@ -92,6 +90,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29769E5025CE551E0072A822 /* Homepage */ = {
+			isa = PBXGroup;
+			children = (
+				29769E5425CE55520072A822 /* ViewModels */,
+				29769E5325CE55420072A822 /* Views */,
+				29769E5225CE553A0072A822 /* Controllers */,
+				29769E5125CE55300072A822 /* Models */,
+			);
+			path = Homepage;
+			sourceTree = "<group>";
+		};
+		29769E5125CE55300072A822 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		29769E5225CE553A0072A822 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				29CBD1DA25C527110021A66D /* HomePageViewController.swift */,
+				29769E2925CD16740072A822 /* HomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		29769E5325CE55420072A822 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				29769E2E25CD19570072A822 /* MainTableView.swift */,
+				29769E3B25CD28CB0072A822 /* SampleCell.swift */,
+				29CBD1EA25C534BA0021A66D /* ProductCell.swift */,
+				2934594625C7D3B100D43CFC /* ChartCell.swift */,
+				29769E3325CD1FCA0072A822 /* MainTableCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		29769E5425CE55520072A822 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		29FE5C1825C13C7C00A43C5E = {
 			isa = PBXGroup;
 			children = (
@@ -115,16 +159,9 @@
 		29FE5C2325C13C7D00A43C5E /* Inventoroo */ = {
 			isa = PBXGroup;
 			children = (
+				29769E5025CE551E0072A822 /* Homepage */,
 				29FE5C2425C13C7D00A43C5E /* AppDelegate.swift */,
 				29FE5C2625C13C7D00A43C5E /* SceneDelegate.swift */,
-				29CBD1DA25C527110021A66D /* HomePageViewController.swift */,
-				29769E2925CD16740072A822 /* HomeViewController.swift */,
-				29769E4025CE305A0072A822 /* StackViewController.swift */,
-				29769E3B25CD28CB0072A822 /* SampleCell.swift */,
-				29769E2E25CD19570072A822 /* MainTableView.swift */,
-				29769E3325CD1FCA0072A822 /* MainTableCell.swift */,
-				29CBD1EA25C534BA0021A66D /* ProductCell.swift */,
-				2934594625C7D3B100D43CFC /* ChartCell.swift */,
 				2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */,
 				29FE5C2D25C13C8100A43C5E /* Assets.xcassets */,
 				29FE5C2F25C13C8100A43C5E /* LaunchScreen.storyboard */,
@@ -290,7 +327,6 @@
 				29769E3425CD1FCA0072A822 /* MainTableCell.swift in Sources */,
 				2934594C25C7D4A700D43CFC /* CellLayoutProtocol.swift in Sources */,
 				29CBD1EB25C534BA0021A66D /* ProductCell.swift in Sources */,
-				29769E4125CE305A0072A822 /* StackViewController.swift in Sources */,
 				29CBD1E625C529450021A66D /* BoilerplateUtilties.swift in Sources */,
 				29CBD1DB25C527110021A66D /* HomePageViewController.swift in Sources */,
 			);
