@@ -35,11 +35,11 @@ struct ChartSection: SectionAttributes {
     
     var sectionId: Int
     let type: SectionType = .chartSection
-    let reuseIdentifier = ChartCell.reuseIdentifier
+    let reuseIdentifier = ChartCollectionCell.identifier
     var numOfItemsInSection = 1
     
     // MARK: - Computed Properties
-    var cellLayout: CellLayout { ChartCell() }
+    var cellLayout: CellLayout { ChartCollectionCell() }
 }
 
 struct ProductsSection: SectionAttributes {
@@ -69,7 +69,7 @@ class HomePageViewController: UICollectionViewController, UICollectionViewDelega
         collectionView.backgroundColor = .green
         collectionView.alwaysBounceVertical = true
         collectionView.register(ProductCell.self, forCellWithReuseIdentifier: ProductCell.reuseIdentifier)
-        collectionView.register(ChartCell.self, forCellWithReuseIdentifier: ChartCell.reuseIdentifier)
+        collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: ChartCollectionCell.identifier)
         
         NotificationCenter.default.addObserver(self, selector: #selector(HomePageViewController.rotated), name: NSNotification.Name.init(rawValue: "Device rotated"), object: nil)
     }

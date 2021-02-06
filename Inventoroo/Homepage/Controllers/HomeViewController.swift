@@ -23,24 +23,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         2
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 2
-    }
-    
+    // Each row will be a collection view contained within a tableview cell
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell?
+        switch indexPath.section {
+        case 0:
+            // create chart cell
+            let chartCell = tableView.dequeueReusableCell(withIdentifier: ChartTableCell.identifier, for: indexPath) as? ChartTableCell
+            cell = chartCell
+            
+        // this cell contains a collection view on the content view container
         
-        let mainCell: UITableViewCell
-        if indexPath.row.isMultiple(of: 2) {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableCell.identifier, for: indexPath) as? MainTableCell else { return UITableViewCell() }
-            mainCell = cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableCell2.identifier, for: indexPath) as? MainTableCell2 else { return UITableViewCell() }
-            mainCell = cell
+        default:
+            // create product cell
+            let productCell = tableView.dequeueReusableCell(withIdentifier: MainTableCell.identifier, for: indexPath) as? MainTableCell
+            cell = productCell
+            
+            // this cell contains a collection view on the content view container
         }
         
-        let contentView = mainCell.contentView
-        var content = mainCell.defaultContentConfiguration()
+        guard let _cell = cell else { return UITableViewCell() }
+                
+        let contentView = _cell.contentView
+        var content = _cell.defaultContentConfiguration()
         
             content.text = """
                 lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
@@ -55,13 +62,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 lorem ipsume lkjlkajs dnsanfdo nksl dlkalkjt kadjf
                 """
         
-        mainCell.contentConfiguration = content
-//
-//        NSLayoutConstraint.activate([
-//            cell.contentView.heightAnchor.constraint(equalTo: cell.superview!.heightAnchor, multiplier: 0.25)
-//        ])
-
-        return mainCell
+        _cell.contentConfiguration = content
+        return _cell
     }
     
     // MARK: - Private functions
@@ -70,6 +72,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView.estimatedRowHeight = 500
         tableView.register(MainTableCell.self, forCellReuseIdentifier: MainTableCell.identifier)
         tableView.register(MainTableCell2.self, forCellReuseIdentifier: MainTableCell2.identifier)
+        tableView.register(ChartTableCell.self, forCellReuseIdentifier: ChartTableCell.identifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

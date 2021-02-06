@@ -7,9 +7,9 @@
 
 import UIKit
 
-class ChartCell: UICollectionViewCell {
+class ChartCollectionCell: UICollectionViewCell {
     
-    static let reuseIdentifier: String = "chartCellId"
+    static let identifier: String = "chartCellId"
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +42,7 @@ class ChartCell: UICollectionViewCell {
     }
 }
 
-extension ChartCell: CellLayout {
+extension ChartCollectionCell: CellLayout {
     
     var portraitSize: CGSize {
         let side = BoilerplateUtilities.shorterDeviceSide * 0.9
