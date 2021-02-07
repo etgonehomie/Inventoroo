@@ -7,8 +7,7 @@
 
 import UIKit
 class ProductCell: UICollectionViewCell {
-    
-    static let reuseIdentifier: String = "productCellId"
+    static let identifier = "productCellId"
     
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -7,8 +7,19 @@
 
 import UIKit
 
-class ChartCollectionCell: UICollectionViewCell {
+class CustomCollectionCell: UICollectionViewCell {
+    static let identifier = "customCell"
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.red
+    }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not be implemented")
+    }
+}
+
+class ChartCollectionCell: UICollectionViewCell {
     static let identifier: String = "chartCellId"
 
     override init(frame: CGRect) {
