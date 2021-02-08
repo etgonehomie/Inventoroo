@@ -127,9 +127,9 @@
 				29769E2E25CD19570072A822 /* MainTableView.swift */,
 				29769E3B25CD28CB0072A822 /* SampleCell.swift */,
 				29CBD1EA25C534BA0021A66D /* ProductCell.swift */,
+				29C989EF25D0EA5400259E64 /* ChartTableCell.swift */,
 				2934594625C7D3B100D43CFC /* ChartCollectionCell.swift */,
 				29769E5825CE59460072A822 /* EmbeddedCollectionTableViewCell.swift */,
-				29C989EF25D0EA5400259E64 /* ChartTableCell.swift */,
 				29769E3325CD1FCA0072A822 /* MainTableCell.swift */,
 			);
 			path = Views;

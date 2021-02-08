@@ -51,23 +51,36 @@ class ChartCollectionCell: UICollectionViewCell, CellAttributable {
     }
     
     private func setupViews() {
-        let labelView = UILabel(frame: contentView.bounds)
-        labelView.text = "Chart Collection Cell"
+        let labelView = UILabel(frame: contentView.frame)
+        labelView.text = "Chart Collection Cell: this is super long the END"
         labelView.textAlignment = .center
+        labelView.lineBreakMode = .byWordWrapping
+        labelView.numberOfLines = 0
         labelView.font = UIFont(name: "AmericanTypewriter-Bold", size: 50)
         addSubview(labelView)
         
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "test")
+        imageView.contentMode = .scaleAspectFit
+        addSubview(imageView)
+        
+        labelView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            
-            labelView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            labelView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            labelView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            labelView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            labelView.widthAnchor.constraint(lessThanOrEqualTo: contentView.widthAnchor, constant: -50),
+            labelView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+        ])
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: labelView.bottomAnchor),
+            imageView.centerXAnchor.constraint(equalTo: layoutMarginsGuide.centerXAnchor),
+            imageView.bottomAnchor.constraint(lessThanOrEqualTo: layoutMarginsGuide.bottomAnchor),
         ])
 
         
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "test")
-//        imageView.contentMode = .scaleAspectFit
-//        addSubview(imageView)
+
 //        
 //        imageView.translatesAutoresizingMaskIntoConstraints = false
 //        
