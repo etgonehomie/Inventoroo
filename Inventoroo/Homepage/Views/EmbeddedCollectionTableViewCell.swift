@@ -8,71 +8,110 @@
 import UIKit
 import Foundation
 
-struct CellAttributes {
-    var identifier: String
-    var title: String
+enum CollectionCellType: String {
+    case chart = "chartId"
+    case product = "productId"
+    
+    var itemSize: CGSize {
+        var side = BoilerplateUtilities.longerDeviceSide
+        switch self {
+        case .chart:
+            side = side * 0.8
+        case .product:
+            side = side * 0.5
+        }
+        return CGSize(width: side, height: side)
+    }
+    
+    var backgroundColor: UIColor {
+        switch self {
+        case .chart:
+            return .red
+        case .product:
+            return .blue
+        }
+    }
+    
+    var cellType: UICollectionViewCell {
+        switch self {
+        case .chart:
+            return ChartCollectionCell()
+        case .product:
+            return ProductCell()
+        }
+    }
 }
 
 // MARK: - TableViewCell
 class EmbeddedCollectionTableViewCell: UITableViewCell {
-    var collectionView: UICollectionView!
-    var collectionViewHeight = NSLayoutConstraint()
+    var collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: UICollectionViewLayout())
+    var titleView: UILabel!
+    var collectionCellIdentifier: String!
         
     static let identifier: String = "embeddedCollectionViewCellId"
-    var title: String?
-    
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 70, height: 80)
-        collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: flowLayout)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: CustomCollectionCell.identifier)
-//        collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: ChartCollectionCell.identifier)
-//        collectionView.register(ProductCell.self, forCellWithReuseIdentifier: ProductCell.identifier)
-        addSubview(collectionView)
-        print("***collection view cell content view width = \(collectionView.frame.width)")
-        print("***collection view cell content view width = \(collectionView.frame.height)")
-//        collectionViewHeight.constant = 100
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureEmbeddedCollectionView(for collectionCell: AnyClass?, identifier: String) {
-        collectionView.register(collectionCell.self, forCellWithReuseIdentifier: identifier)
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
+    private func registerFactory(collectionCell: UICollectionViewCell) {
+        guard let cell = collectionCell as? CellAttributable else { return }
+        collectionCellIdentifier = cell.attributes.identifier
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = cell.attributes.itemSize
+        collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: flowLayout)
+
+        switch collectionCell {
+        case collectionCell as ChartCollectionCell:
+            collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
+        case collectionCell as CustomCollectionCell:
+            collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
+        default:
+            collectionView.register(ProductCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
+        }
+    }
+    
+    func configure(with collectionCell: UICollectionViewCell, forRow row: Int) {
+        contentView.backgroundColor = .gray
+        registerFactory(collectionCell: collectionCell)
         addSubview(collectionView)
-//        setupViews()
-        // Sets the collection view to be within the table views contentView
-    }
-    
-    func dummyConfigure(for number: Int) {
-        backgroundColor = number == 0 ? UIColor.blue : UIColor.yellow
-        title = number == 0 ? "First Section" : "All Other Sections"
-    }
-    
-    private func setupViews() {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "test")
-        imageView.contentMode = .scaleToFill
-//        collectionView.addSubview(imageView)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        // Title View
+        titleView = UILabel(frame: contentView.frame)
+        titleView.font = UIFont(name: "AmericanTypewriter-Bold", size: 70)
+
+        titleView.text = "Hello world"
+        addSubview(titleView)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.tag = row
+        
+
+        
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.translatesAutoresizingMaskIntoConstraints = false
     
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            titleView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            titleView.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
+            titleView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            titleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
         ])
+        titleView.backgroundColor = .yellow
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+        ])
+        collectionView.backgroundColor = .green
     }
 }
 
@@ -82,42 +121,27 @@ extension EmbeddedCollectionTableViewCell: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: section)
 //        return sectionAttributes.numOfItemsInSection
-        5
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath)
         return cell
-//        let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sectionAttributes.reuseIdentifier, for: indexPath)
-//        return cell
-        
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-////        return CGSize(width: collectionView.frame.size.width/2 - 16 , height: collectionView.frame.size.width/2 + 70)
-//        let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
-//        return UIDevice.current.orientation.isLandscape ? sectionAttributes.cellLayout.landscapeSize : sectionAttributes.cellLayout.portraitSize
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch indexPath.section {
+        case 0:
+            return CollectionCellType.chart.itemSize
+        default:
+            return CollectionCellType.product.itemSize
+        }
+//        return CGSize(width: 200, height: 200)
+        let sectionAttributes = SectionAttributesFactory.createSectionAttributes(for: indexPath.section)
+        return UIDevice.current.orientation.isLandscape ? sectionAttributes.cellLayout.landscapeSize : sectionAttributes.cellLayout.portraitSize
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("you selected section:\(indexPath.section) row:\(indexPath.row)")
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 10)
-    }
-}
-
-class ChartTableCell: UITableViewCell {
-    static let identifier: String = "chartCellId"
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-//        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }

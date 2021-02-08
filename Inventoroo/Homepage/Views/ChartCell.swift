@@ -7,8 +7,26 @@
 
 import UIKit
 
-class CustomCollectionCell: UICollectionViewCell {
-    static let identifier = "customCell"
+protocol CellAttributable {
+    var attributes: CollectionCellAttributes { get }
+}
+struct CollectionCellAttributes {
+    let identifier: String
+    let itemWidth: CGFloat
+    let itemHeight: CGFloat
+    let itemSize: CGSize
+    
+    init(identifier: String, itemWidth: CGFloat, itemHeight: CGFloat) {
+        self.identifier = identifier
+        self.itemWidth = itemWidth
+        self.itemHeight = itemHeight
+        itemSize = CGSize(width: itemWidth, height: itemHeight)
+    }
+}
+
+class CustomCollectionCell: UICollectionViewCell, CellAttributable {
+    let attributes = CollectionCellAttributes(identifier: "customCellId", itemWidth: 100, itemHeight: 100)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.red
@@ -19,7 +37,8 @@ class CustomCollectionCell: UICollectionViewCell {
     }
 }
 
-class ChartCollectionCell: UICollectionViewCell {
+class ChartCollectionCell: UICollectionViewCell, CellAttributable {
+    let attributes = CollectionCellAttributes(identifier: "chartCellId", itemWidth: 100, itemHeight: 100)
     static let identifier: String = "chartCellId"
 
     override init(frame: CGRect) {

@@ -19,7 +19,7 @@ class ProductCell: UICollectionViewCell {
     }
     
     private func setupViews() {
-        backgroundColor = UIColor.yellow
+        backgroundColor = UIColor.brown
         largeContentTitle = "hello world"
         
     }
