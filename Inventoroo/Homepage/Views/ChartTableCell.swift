@@ -1,101 +1,58 @@
 //
-//  File.swift
+//  ChartTableCell.swift
 //  Inventoroo
 //
-//  Created by Eric Tom on 2/5/21.
+//  Created by Eric Tom on 2/7/21.
 //
 
 import UIKit
 import Foundation
 
-enum CollectionCellType: String {
-    case chart = "chartId"
-    case product = "productId"
-    
-    var itemSize: CGSize {
-        var side = BoilerplateUtilities.longerDeviceSide
-        switch self {
-        case .chart:
-            side = side * 0.8
-        case .product:
-            side = side * 0.5
-        }
-        return CGSize(width: side, height: side)
-    }
-    
-    var backgroundColor: UIColor {
-        switch self {
-        case .chart:
-            return .red
-        case .product:
-            return .blue
-        }
-    }
-    
-    var cellType: UICollectionViewCell {
-        switch self {
-        case .chart:
-            return ChartCollectionCell()
-        case .product:
-            return ProductCell()
-        }
-    }
-}
-
 // MARK: - TableViewCell
-class EmbeddedCollectionTableViewCell: UITableViewCell {
-    var collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: UICollectionViewLayout())
+class ChartTableCell: UITableViewCell {
+    var collectionView: UICollectionView!
     var titleView: UILabel!
     var collectionCellIdentifier: String!
-        
-    static let identifier: String = "embeddedCollectionViewCellId"
+    static let identifier: String = "chartTableCell"
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func registerFactory(collectionCell: UICollectionViewCell) {
-        guard let cell = collectionCell as? CellAttributable else { return }
-        collectionCellIdentifier = cell.attributes.identifier
+    func configure() {
+        contentView.backgroundColor = .gray
+    
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-//        flowLayout.itemSize = cell.attributes.itemSize
+        flowLayout.itemSize = CGSize(width: 1000, height: 500)
+        flowLayout.estimatedItemSize = CGSize(width: 1000, height: 400)
+        
         collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: flowLayout)
-
-        switch collectionCell {
-        case collectionCell as ChartCollectionCell:
-            collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
-        case collectionCell as CustomCollectionCell:
-            collectionView.register(CustomCollectionCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
-        default:
-            collectionView.register(ProductCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
-        }
-        collectionView.reloadData()
-    }
-    
-    func configure(with collectionCell: UICollectionViewCell, forRow row: Int) {
-        contentView.backgroundColor = .gray
-        registerFactory(collectionCell: collectionCell)
-        addSubview(collectionView)
+        
+        collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: ChartCollectionCell.identifier)
+        collectionView.autoresizingMask = .flexibleHeight
+        collectionView.autoresizesSubviews = true
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+//        collectionView.tag = row
         
         // Title View
         titleView = UILabel(frame: contentView.frame)
         titleView.font = UIFont(name: "AmericanTypewriter-Bold", size: 70)
-
         titleView.text = "Hello world"
-        addSubview(titleView)
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.tag = row
-    
+        // MARK: - Constraints
+        addSubview(collectionView)
+        addSubview(titleView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         titleView.translatesAutoresizingMaskIntoConstraints = false
-    
+                
         NSLayoutConstraint.activate([
             titleView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             titleView.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
@@ -115,7 +72,7 @@ class EmbeddedCollectionTableViewCell: UITableViewCell {
 }
 
 // MARK: - Ext. CollectionView Hooks
-extension EmbeddedCollectionTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ChartTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // TODO: - determine based on model.count
@@ -123,7 +80,7 @@ extension EmbeddedCollectionTableViewCell: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionCell.identifier, for: indexPath)
         return cell
     }
     

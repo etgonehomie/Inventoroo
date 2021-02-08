@@ -19,9 +19,20 @@ class ProductCell: UICollectionViewCell {
     }
     
     private func setupViews() {
+//        let labelView = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let labelView = UILabel()
+        labelView.font = UIFont(name: "AmericanTypewriter-Bold", size: 50)
+        labelView.text = "ProductCell"
+        self.addSubview(labelView)
         backgroundColor = UIColor.brown
-        largeContentTitle = "hello world"
         
+        labelView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            labelView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+            labelView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+            labelView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            labelView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+        ])
     }
 }
 

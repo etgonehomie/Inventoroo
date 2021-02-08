@@ -51,23 +51,34 @@ class ChartCollectionCell: UICollectionViewCell, CellAttributable {
     }
     
     private func setupViews() {
+        let labelView = UILabel(frame: contentView.bounds)
+        labelView.text = "Chart Collection Cell"
+        labelView.textAlignment = .center
+        labelView.font = UIFont(name: "AmericanTypewriter-Bold", size: 50)
+        addSubview(labelView)
         
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "test")
-        imageView.contentMode = .scaleToFill
-        addSubview(imageView)
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let shorterAnchor = BoilerplateUtilities.deviceAnchors(for: contentView).shorterAnchor
-        
-        let padding = portraitSize.width * -0.25
         NSLayoutConstraint.activate([
-            imageView.widthAnchor.constraint(equalTo: shorterAnchor, constant: padding),
-            imageView.heightAnchor.constraint(equalTo: shorterAnchor, constant: padding),
-            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            labelView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            labelView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
         ])
+
+        
+//        let imageView = UIImageView()
+//        imageView.image = UIImage(named: "test")
+//        imageView.contentMode = .scaleAspectFit
+//        addSubview(imageView)
+//        
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        
+//        let padding = portraitSize.width * -0.25
+//        NSLayoutConstraint.activate([
+//            imageView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
+//            imageView.heightAnchor.constraint(equalTo: contentView.heightAnchor),
+//            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+//            imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+//        ])
         backgroundColor = UIColor.blue
     }
 }

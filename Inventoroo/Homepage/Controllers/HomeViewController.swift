@@ -29,15 +29,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmbeddedCollectionTableViewCell.identifier, for: indexPath) as? EmbeddedCollectionTableViewCell else { return UITableViewCell() }
-        switch indexPath.section {
-        case 0:
-            cell.configure(with: ChartCollectionCell(), forRow: indexPath.row)
-        default:
-            cell.configure(with: ProductCell(), forRow: indexPath.row)
-        }
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ChartTableCell.identifier, for: indexPath) as? ChartTableCell else { return UITableViewCell() }
         return cell
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmbeddedCollectionTableViewCell.identifier, for: indexPath) as? EmbeddedCollectionTableViewCell else { return UITableViewCell() }
+//        switch indexPath.section {
+//        case 0:
+//            cell.configure(with: ChartCollectionCell(), forRow: indexPath.row)
+//        default:
+//            cell.configure(with: ProductCell(), forRow: indexPath.row)
+//        }
+//
+//        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -53,7 +55,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // MARK: - Private functions
     private func configure() {
-        tableView.register(EmbeddedCollectionTableViewCell.self, forCellReuseIdentifier: EmbeddedCollectionTableViewCell.identifier)
+        tableView.register(ChartTableCell.self, forCellReuseIdentifier: ChartTableCell.identifier)
+//        tableView.register(EmbeddedCollectionTableViewCell.self, forCellReuseIdentifier: EmbeddedCollectionTableViewCell.identifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
