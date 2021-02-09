@@ -12,7 +12,6 @@
 		2934594C25C7D4A700D43CFC /* CellLayoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */; };
 		29769E2A25CD16740072A822 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E2925CD16740072A822 /* HomeViewController.swift */; };
 		29769E3C25CD28CB0072A822 /* SampleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E3B25CD28CB0072A822 /* SampleCell.swift */; };
-		29769E5925CE59460072A822 /* EmbeddedCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29769E5825CE59460072A822 /* EmbeddedCollectionTableViewCell.swift */; };
 		29C989F025D0EA5400259E64 /* ChartTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C989EF25D0EA5400259E64 /* ChartTableCell.swift */; };
 		29CBD1E625C529450021A66D /* BoilerplateUtilties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */; };
 		29CBD1EB25C534BA0021A66D /* ProductTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CBD1EA25C534BA0021A66D /* ProductTableCell.swift */; };
@@ -47,7 +46,6 @@
 		2934594B25C7D4A700D43CFC /* CellLayoutProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellLayoutProtocol.swift; sourceTree = "<group>"; };
 		29769E2925CD16740072A822 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		29769E3B25CD28CB0072A822 /* SampleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleCell.swift; sourceTree = "<group>"; };
-		29769E5825CE59460072A822 /* EmbeddedCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		29C989EF25D0EA5400259E64 /* ChartTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTableCell.swift; sourceTree = "<group>"; };
 		29CBD1E525C529450021A66D /* BoilerplateUtilties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoilerplateUtilties.swift; sourceTree = "<group>"; };
 		29CBD1EA25C534BA0021A66D /* ProductTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableCell.swift; sourceTree = "<group>"; };
@@ -124,7 +122,6 @@
 				26410F1F25D2254F00B5B1A0 /* ProductCollectionCell.swift */,
 				29C989EF25D0EA5400259E64 /* ChartTableCell.swift */,
 				2934594625C7D3B100D43CFC /* ChartCollectionCell.swift */,
-				29769E5825CE59460072A822 /* EmbeddedCollectionTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -320,7 +317,6 @@
 			files = (
 				29769E3C25CD28CB0072A822 /* SampleCell.swift in Sources */,
 				26410F2025D2254F00B5B1A0 /* ProductCollectionCell.swift in Sources */,
-				29769E5925CE59460072A822 /* EmbeddedCollectionTableViewCell.swift in Sources */,
 				2934594725C7D3B100D43CFC /* ChartCollectionCell.swift in Sources */,
 				29FE5C2525C13C7D00A43C5E /* AppDelegate.swift in Sources */,
 				29FE5C2725C13C7D00A43C5E /* SceneDelegate.swift in Sources */,

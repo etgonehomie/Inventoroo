@@ -23,7 +23,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     // MARK: - TableView Delegate
-    func numberOfSections(in tableView: UITableView) -> Int { 2 }
+    func numberOfSections(in tableView: UITableView) -> Int { 3 }
     
     // Each row will be a collection view contained within a tableview cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
@@ -47,20 +47,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // If want to make even more dynamic check this link out.
         // Cannot make it dynamic based on subview content, because heightForRowAt is called before cellForRowAt
         // https://stackoverflow.com/questions/36459477/dynamically-resizing-uitableviewcell-heights-in-ios-swift
-        print("***Height for row at called: Longer device side: \(UIDevice.longerDeviceSide)")
-        print("***height for row at device position isLandscape: \(UIDevice.current.orientation.isLandscape)")
         return UIDevice.longerDeviceSide / 2
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("***Estimated height for row at called: Longer device side: \(UIDevice.longerDeviceSide)")
         return UIDevice.longerDeviceSide / 2
     }
     
     // MARK: - Private functions
     private func configure() {
         tableView.register(ChartTableCell.self, forCellReuseIdentifier: ChartTableCell.identifier)
-//        tableView.register(EmbeddedCollectionTableViewCell.self, forCellReuseIdentifier: EmbeddedCollectionTableViewCell.identifier)
+        tableView.register(ProductTableCell.self, forCellReuseIdentifier: ProductTableCell.identifier)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
