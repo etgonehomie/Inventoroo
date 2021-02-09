@@ -30,6 +30,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ChartTableCell.identifier, for: indexPath) as? ChartTableCell else { return UITableViewCell() }
+        print("***Cell created for \(indexPath.section):\(indexPath.row)")
         return cell
 //        guard let cell = tableView.dequeueReusableCell(withIdentifier: EmbeddedCollectionTableViewCell.identifier, for: indexPath) as? EmbeddedCollectionTableViewCell else { return UITableViewCell() }
 //        switch indexPath.section {
@@ -46,11 +47,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // If want to make even more dynamic check this link out.
         // Cannot make it dynamic based on subview content, because heightForRowAt is called before cellForRowAt
         // https://stackoverflow.com/questions/36459477/dynamically-resizing-uitableviewcell-heights-in-ios-swift
-        return BoilerplateUtilities.longerDeviceSide / 2
+        print("***Height for row at called: Longer device side: \(UIDevice.longerDeviceSide)")
+        print("***height for row at device position isLandscape: \(UIDevice.current.orientation.isLandscape)")
+        return UIDevice.longerDeviceSide / 2
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return BoilerplateUtilities.longerDeviceSide / 2
+        print("***Estimated height for row at called: Longer device side: \(UIDevice.longerDeviceSide)")
+        return UIDevice.longerDeviceSide / 2
     }
     
     // MARK: - Private functions

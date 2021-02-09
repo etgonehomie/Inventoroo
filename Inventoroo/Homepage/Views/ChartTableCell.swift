@@ -25,21 +25,17 @@ class ChartTableCell: UITableViewCell {
     }
     
     func configure() {
-        contentView.backgroundColor = .gray
-    
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 1000, height: 500)
-        flowLayout.estimatedItemSize = CGSize(width: 1000, height: 400)
+//        flowLayout.itemSize = CGSize(width: 500, height: 500)
+        flowLayout.estimatedItemSize = CGSize(width: 500, height: 500)
         
         collectionView = UICollectionView(frame: contentView.frame, collectionViewLayout: flowLayout)
-        
+        collectionView.delegate = self
+        collectionView.dataSource = self
         collectionView.register(ChartCollectionCell.self, forCellWithReuseIdentifier: ChartCollectionCell.identifier)
         collectionView.autoresizingMask = .flexibleHeight
         collectionView.autoresizesSubviews = true
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
 //        collectionView.tag = row
         
         // Title View
@@ -59,7 +55,6 @@ class ChartTableCell: UITableViewCell {
             titleView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             titleView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
         ])
-        titleView.backgroundColor = .yellow
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: titleView.bottomAnchor),
@@ -67,6 +62,10 @@ class ChartTableCell: UITableViewCell {
             collectionView.widthAnchor.constraint(equalTo: contentView.widthAnchor),
             collectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
         ])
+        
+        // Dummy colors
+        contentView.backgroundColor = .gray
+        titleView.backgroundColor = .yellow
         collectionView.backgroundColor = .green
     }
 }
@@ -81,17 +80,9 @@ extension ChartTableCell: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionCell.identifier, for: indexPath)
+        print("Cell (\(indexPath.section) : \(indexPath.row)) width is \(cell.frame.width)")
         return cell
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        switch indexPath.section {
-//        case 0:
-//            return CollectionCellType.chart.itemSize
-//        default:
-//            return CollectionCellType.product.itemSize
-//        }
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("you selected section:\(indexPath.section) row:\(indexPath.row)")
