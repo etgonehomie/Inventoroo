@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol CellAttributable {
     var attributes: CollectionCellAttributes { get }
 }
